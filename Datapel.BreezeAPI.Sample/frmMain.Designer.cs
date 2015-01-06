@@ -52,6 +52,10 @@
             this.tabBasic = new System.Windows.Forms.TabPage();
             this.tabServiceGet = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label19 = new System.Windows.Forms.Label();
+            this.txtId2 = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtID = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.txtPage = new System.Windows.Forms.TextBox();
@@ -66,6 +70,9 @@
             this.txtErrorMsg2 = new System.Windows.Forms.TextBox();
             this.tabServiceSave = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnAddNew = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtSaveValue = new System.Windows.Forms.TextBox();
             this.dgvSaveReturn = new System.Windows.Forms.DataGridView();
             this.label16 = new System.Windows.Forms.Label();
             this.txtSaveField = new System.Windows.Forms.TextBox();
@@ -76,8 +83,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txtSaveValue = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tabCtrl.SuspendLayout();
             this.tabBasic.SuspendLayout();
@@ -105,7 +110,7 @@
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(179, 20);
             this.txtUser.TabIndex = 1;
-            this.txtUser.Text = "superuser";
+            this.txtUser.Text = "developer";
             // 
             // txtPwd
             // 
@@ -113,6 +118,8 @@
             this.txtPwd.Name = "txtPwd";
             this.txtPwd.Size = new System.Drawing.Size(209, 20);
             this.txtPwd.TabIndex = 2;
+            this.txtPwd.Text = "passw0rd";
+            this.txtPwd.UseSystemPasswordChar = true;
             // 
             // txtToken
             // 
@@ -315,6 +322,10 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label19);
+            this.panel2.Controls.Add(this.txtId2);
+            this.panel2.Controls.Add(this.label18);
+            this.panel2.Controls.Add(this.txtID);
             this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.label12);
             this.panel2.Controls.Add(this.txtPage);
@@ -332,6 +343,38 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(694, 364);
             this.panel2.TabIndex = 0;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(275, 107);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(51, 13);
+            this.label19.TabIndex = 31;
+            this.label19.Text = "id2 Value";
+            // 
+            // txtId2
+            // 
+            this.txtId2.Location = new System.Drawing.Point(332, 104);
+            this.txtId2.Name = "txtId2";
+            this.txtId2.Size = new System.Drawing.Size(209, 20);
+            this.txtId2.TabIndex = 30;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(18, 104);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(45, 13);
+            this.label18.TabIndex = 29;
+            this.label18.Text = "id Value";
+            // 
+            // txtID
+            // 
+            this.txtID.Location = new System.Drawing.Point(74, 101);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(179, 20);
+            this.txtID.TabIndex = 28;
             // 
             // label11
             // 
@@ -373,9 +416,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvReturn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvReturn.Location = new System.Drawing.Point(74, 112);
+            this.dgvReturn.Location = new System.Drawing.Point(74, 130);
             this.dgvReturn.Name = "dgvReturn";
-            this.dgvReturn.Size = new System.Drawing.Size(574, 237);
+            this.dgvReturn.Size = new System.Drawing.Size(574, 219);
             this.dgvReturn.TabIndex = 1;
             // 
             // label8
@@ -451,6 +494,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.btnAddNew);
             this.panel3.Controls.Add(this.label17);
             this.panel3.Controls.Add(this.txtSaveValue);
             this.panel3.Controls.Add(this.dgvSaveReturn);
@@ -469,6 +513,32 @@
             this.panel3.Size = new System.Drawing.Size(694, 364);
             this.panel3.TabIndex = 0;
             // 
+            // btnAddNew
+            // 
+            this.btnAddNew.Location = new System.Drawing.Point(603, 58);
+            this.btnAddNew.Name = "btnAddNew";
+            this.btnAddNew.Size = new System.Drawing.Size(75, 23);
+            this.btnAddNew.TabIndex = 36;
+            this.btnAddNew.Text = "Copy New";
+            this.btnAddNew.UseVisualStyleBackColor = true;
+            this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(276, 68);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(59, 13);
+            this.label17.TabIndex = 35;
+            this.label17.Text = "Field Value";
+            // 
+            // txtSaveValue
+            // 
+            this.txtSaveValue.Location = new System.Drawing.Point(343, 65);
+            this.txtSaveValue.Name = "txtSaveValue";
+            this.txtSaveValue.Size = new System.Drawing.Size(179, 20);
+            this.txtSaveValue.TabIndex = 34;
+            // 
             // dgvSaveReturn
             // 
             this.dgvSaveReturn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -477,7 +547,7 @@
             this.dgvSaveReturn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSaveReturn.Location = new System.Drawing.Point(85, 112);
             this.dgvSaveReturn.Name = "dgvSaveReturn";
-            this.dgvSaveReturn.Size = new System.Drawing.Size(574, 237);
+            this.dgvSaveReturn.Size = new System.Drawing.Size(593, 237);
             this.dgvSaveReturn.TabIndex = 33;
             // 
             // label16
@@ -523,6 +593,7 @@
             this.txtSaveQuery.Size = new System.Drawing.Size(209, 20);
             this.txtSaveQuery.TabIndex = 28;
             this.txtSaveQuery.Text = "filter~basestockid=";
+            this.txtSaveQuery.TextChanged += new System.EventHandler(this.txtSaveQuery_TextChanged);
             // 
             // txtSaveEndpoint
             // 
@@ -557,22 +628,6 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(467, 20);
             this.textBox3.TabIndex = 24;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(276, 68);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(59, 13);
-            this.label17.TabIndex = 35;
-            this.label17.Text = "Field Value";
-            // 
-            // txtSaveValue
-            // 
-            this.txtSaveValue.Location = new System.Drawing.Point(343, 65);
-            this.txtSaveValue.Name = "txtSaveValue";
-            this.txtSaveValue.Size = new System.Drawing.Size(179, 20);
-            this.txtSaveValue.TabIndex = 34;
             // 
             // frmMain
             // 
@@ -650,6 +705,11 @@
         private System.Windows.Forms.TextBox txtSaveField;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtSaveValue;
+        private System.Windows.Forms.Button btnAddNew;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox txtId2;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox txtID;
     }
 }
 

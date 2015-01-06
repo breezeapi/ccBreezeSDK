@@ -120,6 +120,13 @@ namespace Datapel.BreezeAPI.SDK.Client
             }
 
             var response = (HttpWebResponse)request.GetResponse();
+
+            if (response.StatusCode != HttpStatusCode.Created &&
+                response.StatusCode != HttpStatusCode.OK)
+            {
+                throw new WebException("", null, WebExceptionStatus.UnknownError, response); 
+            }
+
             string result = null;
 
             using (Stream stream = response.GetResponseStream())

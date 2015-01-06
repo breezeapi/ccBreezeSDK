@@ -44,12 +44,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BreezeServiceBase.cs" />
+    <Compile Include="Contract\Address.cs" />
+    <Compile Include="Contract\Contact.cs" />
+    <Compile Include="Contract\Inventory.cs" />
     <Compile Include="Contract\Item.cs" />
+    <Compile Include="Contract\PriceList.cs" />
+    <Compile Include="Contract\Sale.cs" />
+    <Compile Include="Contract\SaleItem.cs" />
     <Compile Include="Contract\StockLocation.cs" />
     <Compile Include="Contract\WMSBaseEntity.cs" />
+    <Compile Include="Helper\FilterHelper.cs" />
     <Compile Include="PostRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\AddressListService.cs" />
+    <Compile Include="Service\ContactListService.cs" />
+    <Compile Include="Service\ContactService.cs" />
+    <Compile Include="Service\InventoryListService.cs" />
+    <Compile Include="Service\InventoryService.cs" />
     <Compile Include="Service\ItemService.cs" />
+    <Compile Include="Service\PriceListService.cs" />
+    <Compile Include="Service\SaleListService.cs" />
+    <Compile Include="Service\SaleService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
