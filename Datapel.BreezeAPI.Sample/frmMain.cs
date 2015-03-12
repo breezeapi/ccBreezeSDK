@@ -74,6 +74,10 @@ namespace Datapel.BreezeAPI.Sample
                 case "sales":
                     GetSale();
                     break;
+                case "locations":
+                    GetLocation();
+                    break;
+
             }
         }
 
@@ -92,7 +96,9 @@ namespace Datapel.BreezeAPI.Sample
             service.Authorised(txtUser.Text, txtPwd.Text);
             int pagesize = Convert.ToInt16(txtPageSize.Text);
             int pageSkip = Convert.ToInt16(txtPage.Text) * pagesize;
-            dgvReturn.DataSource = service.GetList(txtQuery2.Text, pageSkip, pagesize);
+            var inList = service.GetListByLocationId(txtID.Text);
+            dgvReturn.DataSource = inList.inventorylist; 
+            //dgvReturn.DataSource = service.GetList(txtQuery2.Text, pageSkip, pagesize);
         }
         private void GetInventory()
         {
@@ -146,6 +152,16 @@ namespace Datapel.BreezeAPI.Sample
             int pageSkip = Convert.ToInt16(txtPage.Text) * pagesize;
             dgvReturn.DataSource = service.GetSaleBySaleId(txtID.Text);
         }
+
+        private void GetLocation()
+        {
+            var service = new LocationService();
+            service.Authorised(txtUser.Text, txtPwd.Text);
+            int pagesize = Convert.ToInt16(txtPageSize.Text);
+            int pageSkip = Convert.ToInt16(txtPage.Text) * pagesize;
+            dgvReturn.DataSource = service.GetLocationByName(txtID.Text);
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             #region Get an item for update 

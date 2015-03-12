@@ -78,7 +78,32 @@ namespace Datapel.BreezeAPI.SDK
                 return false; 
             }
         }
-        
+        public T GetTypeList(string query="filter~*",  int page = 0, int pagesize=100)
+        {
+            var path = GenerateGetPath(HttpMethods.GET, query, page, pagesize);
+            T list = null;
+
+            try
+            {
+                var ret = WebClient.Get(path).ToString();
+                CheckIfReturnException(ret);
+                list = JsonConvert.DeserializeObject<T>(ret);
+            }
+            catch
+#if DEBUG
+ (Exception ex)
+            {
+                //throw ex; 
+                var test = ex.Message;
+            }
+#else
+            {}
+#endif
+
+
+            return list; 
+        }
+
     }
 
     public class BreezeServiceBase
@@ -111,11 +136,20 @@ namespace Datapel.BreezeAPI.SDK
 
         public void Authorised(AuthorisationState state)
         {
-            if (_authoriser == null)
+            if (state.isAuthorised)
             {
-                _authoriser = new APIAuthorizer();
+                State = state;
             }
-            State = _authoriser.AuthorizeClient(state.AuthorisationCode);
+            else
+            {
+                if (_authoriser == null)
+                {
+                    _authoriser = new APIAuthorizer();
+                }
+
+                State = _authoriser.AuthorizeClient(state.AuthorisationCode);            
+            }
+
             //if (WebClient == null)
             {
                 WebClient = new APIClient(State);
@@ -141,11 +175,24 @@ namespace Datapel.BreezeAPI.SDK
                 return false;
             }
 
-            var obj = JsonConvert.DeserializeObject<WMSBaseEntity>(content);
-            if (obj.exception != null)
+            if (content.StartsWith("["))
             {
-                return true; 
+                var objList = JsonConvert.DeserializeObject<IList<WMSBaseEntity>>(content);
+                foreach (var obj in objList)
+                if (obj.exception != null)
+                {
+                    return true;
+                }
             }
+            else
+            {
+                var obj = JsonConvert.DeserializeObject<WMSBaseEntity>(content);
+                if (obj.exception != null)
+                {
+                    return true;
+                }
+            }
+
             return false; 
         }
 

@@ -23,4 +23,9 @@ namespace Datapel.BreezeAPI.SDK.Contract
         public decimal worcommit { get; set; }
 
     }
+
+    public class InventoryList : WMSBaseEntity
+    {
+        public IList<Inventory> inventorylist { get; set; }
+    }
 }

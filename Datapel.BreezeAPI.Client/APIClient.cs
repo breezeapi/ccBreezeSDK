@@ -11,12 +11,11 @@ using System.Linq;
 namespace Datapel.BreezeAPI.SDK.Client
 {
     /// <summary>
-    /// This class is used to make Shopify API calls 
+    /// This class is used to make API calls 
     /// </summary>
     /// <remarks>
-    /// You will first need to use the ShopifyAPIAuthorizer to obtain the required authorization.
+    /// You will first need to use the APIAuthorizer to obtain the required authorization.
     /// </remarks>
-    /// <seealso cref="http://api.shopify.com/"/>
     public class APIClient
     {
 
@@ -38,7 +37,7 @@ namespace Datapel.BreezeAPI.SDK.Client
         /// Creates an instance of this class for use with making API Calls
         /// </summary>
         /// <param name="state">the authorization state required to make the API Calls</param>
-        /// <param name="translator">the translator used to transform the data between your C# client code and the Shopify API</param>
+        /// <param name="translator">the translator used to transform the data between your C# client code and the API</param>
         public APIClient(AuthorisationState state, IDataTranslator translator)
         {
             this.State = state;
@@ -46,11 +45,10 @@ namespace Datapel.BreezeAPI.SDK.Client
         }
 
         /// <summary>
-        /// Make an HTTP Request to the Shopify API
+        /// Make an HTTP Request to the API
         /// </summary>
         /// <param name="method">method to be used in the request</param>
         /// <param name="path">the path that should be requested</param>
-        /// <seealso cref="http://api.shopify.com/"/>
         /// <returns>the server response</returns>
         public object Call(HttpMethods method, string path)
         {
@@ -58,12 +56,11 @@ namespace Datapel.BreezeAPI.SDK.Client
         }
 
         /// <summary>
-        /// Make an HTTP Request to the Shopify API
+        /// Make an HTTP Request to the API
         /// </summary>
         /// <param name="method">method to be used in the request</param>
         /// <param name="path">the path that should be requested</param>
         /// <param name="callParams">any parameters needed or expected by the API</param>
-        /// <seealso cref="http://api.shopify.com/"/>
         /// <returns>the server response</returns>
         public object Call(HttpMethods method, string path, object callParams)
         {            
@@ -144,10 +141,9 @@ namespace Datapel.BreezeAPI.SDK.Client
         }
 
         /// <summary>
-        /// Make a Get method HTTP request to the Shopify API
+        /// Make a Get method HTTP request to the API
         /// </summary>
         /// <param name="path">the path where the API call will be made.</param>
-        /// <seealso cref="http://api.shopify.com/"/>
         /// <returns>the server response</returns>
         public object Get(string path)
         {
@@ -155,11 +151,10 @@ namespace Datapel.BreezeAPI.SDK.Client
         }
 
         /// <summary>
-        /// Make a Get method HTTP request to the Shopify API
+        /// Make a Get method HTTP request to the API
         /// </summary>
         /// <param name="path">the path where the API call will be made.</param>
         /// <param name="callParams">the querystring params</param>
-        /// <seealso cref="http://api.shopify.com/"/>
         /// <returns>the server response</returns>
         public object Get(string path, NameValueCollection callParams)
         {
@@ -167,11 +162,10 @@ namespace Datapel.BreezeAPI.SDK.Client
         }
 
         /// <summary>
-        /// Make a Post method HTTP request to the Shopify API
+        /// Make a Post method HTTP request to the API
         /// </summary>
         /// <param name="path">the path where the API call will be made.</param>
         /// <param name="data">the data that this path will be expecting</param>
-        /// <seealso cref="http://api.shopify.com/"/>
         /// <returns>the server response</returns>
         public object Post(string path, object data)
         {
@@ -179,11 +173,10 @@ namespace Datapel.BreezeAPI.SDK.Client
         }
 
         /// <summary>
-        /// Make a Put method HTTP request to the Shopify API
+        /// Make a Put method HTTP request to the API
         /// </summary>
         /// <param name="path">the path where the API call will be made.</param>
         /// <param name="data">the data that this path will be expecting</param>
-        /// <seealso cref="http://api.shopify.com/"/>
         /// <returns>the server response</returns>
         public object Put(string path, object data)
         {
@@ -191,10 +184,9 @@ namespace Datapel.BreezeAPI.SDK.Client
         }
 
         /// <summary>
-        /// Make a Delete method HTTP request to the Shopify API
+        /// Make a Delete method HTTP request to the API
         /// </summary>
         /// <param name="path">the path where the API call will be made.</param>
-        /// <seealso cref="http://api.shopify.com/"/>
         /// <returns>the server response</returns>
         public object Delete(string path)
         {
@@ -245,7 +237,7 @@ namespace Datapel.BreezeAPI.SDK.Client
         public BreezeReturnType ReturnType { get; set; }
 
         /// <summary>
-        /// The default content type used on the HTTP Requests to the Shopify API
+        /// The default content type used on the HTTP Requests to the API
         /// </summary>
         protected static readonly string DefaultContentType = "application/json";
         
@@ -256,7 +248,7 @@ namespace Datapel.BreezeAPI.SDK.Client
         protected AuthorisationState State { get; set; }
 
         /// <summary>
-        /// Used to translate the data sent and recieved by the Shopify API
+        /// Used to translate the data sent and recieved by the API
         /// </summary>
         /// <example>
         /// This could be used to translate from C# objects to XML or JSON.  Thus making your code
