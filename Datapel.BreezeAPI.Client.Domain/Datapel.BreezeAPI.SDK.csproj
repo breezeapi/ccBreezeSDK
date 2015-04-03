@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -48,12 +48,15 @@
     <Compile Include="BreezeServiceBase.cs" />
     <Compile Include="Contract\Address.cs" />
     <Compile Include="Contract\Contact.cs" />
+    <Compile Include="Contract\EnumFile.cs" />
     <Compile Include="Contract\Inventory.cs" />
     <Compile Include="Contract\Item.cs" />
     <Compile Include="Contract\Location.cs" />
     <Compile Include="Contract\PriceList.cs" />
     <Compile Include="Contract\Sale.cs" />
     <Compile Include="Contract\SaleItem.cs" />
+    <Compile Include="Contract\SaleQueueResponse.cs" />
+    <Compile Include="Contract\StatusResponse.cs" />
     <Compile Include="Contract\StockLocation.cs" />
     <Compile Include="Contract\WMSBaseEntity.cs" />
     <Compile Include="Helper\apiException.cs" />
@@ -69,7 +72,9 @@
     <Compile Include="Service\LocationService.cs" />
     <Compile Include="Service\PriceListService.cs" />
     <Compile Include="Service\SaleListService.cs" />
+    <Compile Include="Service\SaleQueueService.cs" />
     <Compile Include="Service\SaleService.cs" />
+    <Compile Include="Service\StatusService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Datapel.BreezeAPI.SDK.Contract;
 
 namespace Datapel.BreezeAPI.SDK.Helper
 {
@@ -55,5 +56,29 @@ namespace Datapel.BreezeAPI.SDK.Helper
         {
             return string.Format(LOCACTIONID_FILTER_TEMPLATE, id);
         }
+
+        public static string GetStatusFilter(StatusType status, string searchString)
+        {
+            switch (status)
+            {
+                case StatusType.invoicenum:
+                    return "invoicenum" + "='" + searchString + "'";
+                case StatusType.ordernum:
+                    return "ordernum" + "='" + searchString + "'";
+                case StatusType.PRN:
+                    return "PRN" + "='" + searchString + "'";
+                case StatusType.QID:
+                    return "QID" + "='" + searchString + "'";
+                case StatusType.SalesID:
+                    return "SalesID" + "=" + searchString;
+                case StatusType.ShipReference:
+                    return "ShipReference" + "='" + searchString + "'";
+                case StatusType.TransfersID:
+                    return "TransfersID" + "=" + searchString;
+                default:
+                    return "";
+            }
+        }
+
     }
 }

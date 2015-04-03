@@ -12,7 +12,7 @@ using Newtonsoft.Json.Converters;
 namespace Datapel.BreezeAPI.SDK
 {
     public // abstract 
-        class BreezeServiceBase<T> : BreezeServiceBase
+        class BreezeServiceBase<T> : BreezeServiceBase, IDisposable
         where T : WMSBaseEntity
     {
         #region Constructor
@@ -49,20 +49,20 @@ namespace Datapel.BreezeAPI.SDK
         }
         public bool Update(string query, T entity)
         {
-            return Save(query, entity, "UPDATE");
+            return Save(query, entity, PostUpdateType.UPDATE);
         }
         public bool Insert(string query, T entity)
         {
-            return Save(query, entity, "INSERT");
+            return Save(query, entity, PostUpdateType.INSERT);
         }
-        private bool Save (string query, T entity, string updateType)
+        private bool Save(string query, T entity, PostUpdateType updateType)
         {
             var path = GenerateGetPath(HttpMethods.POST, query);
             var strContent = JsonConvert.SerializeObject(entity);
             var postRequest = new PostRequest()
             {
                 filter = query,
-                updatetype = updateType,
+                updatetype = updateType.ToString(),
                 updateObject = strContent
             };
             strContent = JsonConvert.SerializeObject(postRequest);
@@ -104,6 +104,13 @@ namespace Datapel.BreezeAPI.SDK
             return list; 
         }
 
+
+        public void Dispose()
+        {
+            //throw new NotImplementedException();
+            _authoriser = null;
+            WebClient = null; 
+        }
     }
 
     public class BreezeServiceBase
@@ -147,7 +154,7 @@ namespace Datapel.BreezeAPI.SDK
                     _authoriser = new APIAuthorizer();
                 }
 
-                State = _authoriser.AuthorizeClient(state.AuthorisationCode);            
+                State = _authoriser.AuthorizeClient(state.AuthorisationCode);
             }
 
             //if (WebClient == null)
@@ -179,10 +186,10 @@ namespace Datapel.BreezeAPI.SDK
             {
                 var objList = JsonConvert.DeserializeObject<IList<WMSBaseEntity>>(content);
                 foreach (var obj in objList)
-                if (obj.exception != null)
-                {
-                    return true;
-                }
+                    if (obj.exception != null)
+                    {
+                        return true;
+                    }
             }
             else
             {
@@ -193,10 +200,47 @@ namespace Datapel.BreezeAPI.SDK
                 }
             }
 
-            return false; 
+            return false;
         }
 
+        protected T Get<T>(string query)
+        {
+            var path = GenerateGetPath(HttpMethods.GET, query);
+
+            var ret = WebClient.Get(path).ToString();
+
+            return DeserializeObject<T>(ret); 
+        }
+
+        protected T DeserializeObject<T>(string strJSON)
+        {
+            if (strJSON != null)
+            {
+                return JsonConvert.DeserializeObject<T>(strJSON);
+            }
+            else
+            {
+                return default(T);
+            }
+        }
+
+
+
+
+        public void Dispose()
+        {
+            _authoriser = null;
+            WebClient = null;
+        }
     }
 
+ 
+
+
+    public enum PostUpdateType
+    {
+        INSERT,
+        UPDATE
+    }
 
 }
