@@ -12,7 +12,7 @@ namespace Datapel.BreezeAPI.SDK.Service
         public SaleListService()
             : base(ENDPOINT)
         { }
-        private const string ENDPOINT = "salelist";
+        private const string ENDPOINT = "saleslist";
 
         public IList<BaseSale> GetSaleListByMYOBCardId(string cardId)
         {
@@ -20,7 +20,16 @@ namespace Datapel.BreezeAPI.SDK.Service
                 return null;
 
             var query = FILTER_STR_HEADER + FilterHelper.GetMYOBCardIDFilter(cardId);
-            return GetList(query, 0, 0); 
+            return GetList(query, 0, 0);      
         }
+
+        public IList<BaseSale> GetSaleListOrder(string query="filter~*")
+        {
+            var ret = Get<SaleList>(query);
+
+            return ret.orders; 
+        }
+
+
     }
 }

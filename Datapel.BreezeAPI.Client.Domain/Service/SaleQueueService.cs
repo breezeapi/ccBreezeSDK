@@ -5,6 +5,8 @@ using System.Text;
 using Datapel.BreezeAPI.SDK.Contract;
 using Datapel.BreezeAPI.SDK.Client;
 using Newtonsoft.Json;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace Datapel.BreezeAPI.SDK.Service
 {
@@ -29,9 +31,16 @@ namespace Datapel.BreezeAPI.SDK.Service
             //strContent = JsonConvert.SerializeObject(postRequest);
             WebClient.ReturnType = BreezeReturnType.xml; 
             var ret = WebClient.Post(path, strContent).ToString();
-            return DeserializeObject<SaleQueueResponse>(ret); 
+            return DeserialXML<SaleQueueResponse>(ret); 
         }
-
+        private T DeserialXML<T>(string xmlStr)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(T));
+            using (TextReader reader = new StringReader(xmlStr))
+            {
+                return (T)serializer.Deserialize(reader);
+            }
+        }
         public SaleQueueCountResponse FlushXML () 
         {
             SaleQueueCountResponse ret = null; 
