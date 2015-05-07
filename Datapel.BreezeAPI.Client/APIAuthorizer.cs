@@ -94,6 +94,13 @@ namespace Datapel.BreezeAPI.SDK.Client
             return authURL.ToString();
         }
 
+        public void SetServerUrl(string url)
+        {
+            if (!string.IsNullOrEmpty(url))
+            {
+                BreezeAPIPath = url;
+            }
+        }
         /// <summary>
         /// After the shop owner has authorized your app, Shopify will give you a code.
         /// Use this code to get your authorization state that you will use to make API calls

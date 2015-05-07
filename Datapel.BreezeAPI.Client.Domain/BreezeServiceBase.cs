@@ -126,6 +126,8 @@ namespace Datapel.BreezeAPI.SDK
         public APIClient WebClient { get; internal set; }
 
         public AuthorisationState State { get; internal set; }
+
+        public string ServerUrl { get; set;  }
         #endregion
 
         public void Authorised(string user, string password)
@@ -134,15 +136,21 @@ namespace Datapel.BreezeAPI.SDK
             {
                 _authoriser = new APIAuthorizer();
             }
+            if (!string.IsNullOrEmpty(ServerUrl)) _authoriser.SetServerUrl(ServerUrl);
+
             State = _authoriser.AuthorizeClient(user, password);
             //if (WebClient == null)
             {
                 WebClient = new APIClient(State);
+                WebClient.UseCompression = _useCompression; 
+                if (!string.IsNullOrEmpty(ServerUrl)) WebClient.SetServerUrl(ServerUrl);
+
             }
         }
 
         public void Authorised(AuthorisationState state)
         {
+
             if (state.isAuthorised)
             {
                 State = state;
@@ -153,13 +161,15 @@ namespace Datapel.BreezeAPI.SDK
                 {
                     _authoriser = new APIAuthorizer();
                 }
-
+                if (!string.IsNullOrEmpty(ServerUrl)) _authoriser.SetServerUrl(ServerUrl);
                 State = _authoriser.AuthorizeClient(state.AuthorisationCode);
             }
 
             //if (WebClient == null)
             {
                 WebClient = new APIClient(State);
+                WebClient.UseCompression = _useCompression;
+                if (!string.IsNullOrEmpty(ServerUrl)) WebClient.SetServerUrl(ServerUrl);                
             }
         }
 
@@ -224,7 +234,16 @@ namespace Datapel.BreezeAPI.SDK
             }
         }
 
-
+        private bool _useCompression = false; 
+        public bool UseCompression
+        {
+            set
+            {
+                _useCompression = value;
+                if (WebClient != null)
+                    WebClient.UseCompression = _useCompression; 
+            }
+        }
 
 
         public void Dispose()

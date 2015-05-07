@@ -22,6 +22,8 @@ namespace Datapel.BreezeAPI.SDK.Client
         private string BreezeAPIPath = ConfigurationManager.AppSettings["BreezeAPI.MainPath"];
         private string AuthTokenHeader = ConfigurationManager.AppSettings["BreezeAPI.Header.AuthToken"];
         private string AuthorizationHeader = ConfigurationManager.AppSettings["BreezeAPI.Header.Authorization"];
+        private const string ContentEncodingHeader = "Content-Encoding"; 
+
 
         /// <summary>
         /// Creates an instance of this class for use with making API Calls
@@ -31,6 +33,7 @@ namespace Datapel.BreezeAPI.SDK.Client
         {
             this.State = state;
             ReturnTypeString = ConfigurationManager.AppSettings["BreezeAPI.ReturnType"];
+            UseCompression = false; 
         }
 
         /// <summary>
@@ -42,6 +45,7 @@ namespace Datapel.BreezeAPI.SDK.Client
         {
             this.State = state;
             this.Translator = translator;
+            UseCompression = false; 
         }
 
         /// <summary>
@@ -69,7 +73,7 @@ namespace Datapel.BreezeAPI.SDK.Client
             url += path; 
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.ContentType = GetRequestContentType();            
+            request.ContentType = GetRequestContentType();                    
             request.Method = method.ToString();
             SetHeader(request); 
 
@@ -278,8 +282,27 @@ namespace Datapel.BreezeAPI.SDK.Client
             {
                 header.Add(AuthorizationHeader, State.AuthorisationCode);
             }
+
+            if (header.AllKeys.Any(k => k == ContentEncodingHeader)  && UseCompression)
+            {
+                header[ContentEncodingHeader] = "gzip";
+            }
+            else
+            {
+                header.Add(ContentEncodingHeader, "gzip");
+            }
+
         }
 
+        public void SetServerUrl(string url)
+        {
+            if (!string.IsNullOrEmpty(url))
+            {
+                BreezeAPIPath = url; 
+            }
+        }
+
+        public bool UseCompression { get; set; }
     }
 
     public enum HttpMethods

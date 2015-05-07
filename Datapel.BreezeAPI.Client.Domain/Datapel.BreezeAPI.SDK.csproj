@@ -73,6 +73,7 @@
     <Compile Include="Service\ItemService.cs" />
     <Compile Include="Service\LocationService.cs" />
     <Compile Include="Service\PriceListService.cs" />
+    <Compile Include="Service\ReplicateSlaveService.cs" />
     <Compile Include="Service\SaleListService.cs" />
     <Compile Include="Service\SaleQueueService.cs" />
     <Compile Include="Service\SaleService.cs" />

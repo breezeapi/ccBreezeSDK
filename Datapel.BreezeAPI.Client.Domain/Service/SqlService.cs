@@ -16,7 +16,7 @@ namespace Datapel.BreezeAPI.SDK.Service
             base.endpoint = "sql"; 
         }
 
-        protected string GetSql(string sqlString)
+        public string GetSql(string sqlString)
         {
             if (string.IsNullOrEmpty(sqlString))
                 return null;
