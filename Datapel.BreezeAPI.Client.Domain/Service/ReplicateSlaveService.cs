@@ -32,7 +32,7 @@ namespace Datapel.BreezeAPI.SDK.Service
             for (int i = 0; (i * MaxSendCount) < dt.Rows.Count; i++)
             {
                 dtt.Clear();
-                dt.AsEnumerable().Skip(i * pgSize).Take(pgSize).CopyToDataTable(dtt, LoadOption.OverwriteChanges);              
+                dt.AsEnumerable().Skip(i * pgSize).Take(pgSize).CopyToDataTable(dtt, LoadOption.OverwriteChanges);
 
                 var json = JsonConvert.SerializeObject(dtt, Formatting.Indented);
                 json = submitQueries(json);
