@@ -16,6 +16,7 @@ namespace Datapel.BreezeAPI.SDK.Helper
         const string ITEMNAME_FILTER_TEMPLATE = "Name='{0}'";
         const string MYOBCARD_FILTER_TEMPLATE = "MYOBCardRecordID='{0}'";
         const string SALEID_FILTER_TEMPLATE = "SalesID={0}";
+        const string SRN_FILTER_TEMPLATE = "SRN='{0}'";
         const string LOCATIONNAME_FILTER_TEMPLATE = "CardIdentification='{0}'";
         const string LOCACTIONID_FILTER_TEMPLATE = "locationid={0}";
         #endregion
@@ -47,6 +48,10 @@ namespace Datapel.BreezeAPI.SDK.Helper
         public static string GetSaleIDFilter(string id)
         {
             return string.Format(SALEID_FILTER_TEMPLATE, id);
+        }
+        public static string GetSRNFilter(string id)
+        {
+            return string.Format(SRN_FILTER_TEMPLATE, id);
         }
         public static string GetLocationNameFilter(string name)
         {

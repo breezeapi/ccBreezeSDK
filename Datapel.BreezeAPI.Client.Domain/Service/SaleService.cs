@@ -31,5 +31,14 @@ namespace Datapel.BreezeAPI.SDK.Service
             var query = FILTER_STR_HEADER + FilterHelper.GetSaleIDFilter(id);
             return GetList(query, 0, 0);
         }
+
+        public IList<Sale> GetSaleBySRN (string srn)
+        {
+            if (string.IsNullOrEmpty(srn))
+                return null;
+
+            var query = FILTER_STR_HEADER + FilterHelper.GetSRNFilter(srn);
+            return GetList(query, 0, 0);
+        }
     }
 }

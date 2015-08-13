@@ -29,7 +29,9 @@ namespace Datapel.BreezeAPI.SDK.Service
             var sb = new StringBuilder();
             DataTable ret = null;
             var dtt = dt.Clone();
-            for (int i = 0; (i * MaxSendCount) < dt.Rows.Count; i++)
+            if (pgSize == 0)
+                pgSize = dt.Rows.Count; 
+            for (int i = 0; (i * pgSize) < dt.Rows.Count; i++)
             {
                 dtt.Clear();
                 dt.AsEnumerable().Skip(i * pgSize).Take(pgSize).CopyToDataTable(dtt, LoadOption.OverwriteChanges);
