@@ -7,6 +7,7 @@ using Datapel.BreezeAPI.SDK.Client;
 using Newtonsoft.Json;
 using System.Xml.Serialization;
 using System.IO;
+using System.Xml;
 
 namespace Datapel.BreezeAPI.SDK.Service
 {
@@ -52,6 +53,57 @@ namespace Datapel.BreezeAPI.SDK.Service
             return ret; 
         }
 
+
+        public IList<Tuple<string, string>> SplitSalesQueueXML(string xmlString)
+        {
+            var xmlDoc = new XmlDocument();
+            xmlDoc.LoadXml(xmlString);
+            var nodeList = xmlDoc.SelectNodes("/SalesQueueXml/salesQueue/SalesQueue");
+            var retList = new List<Tuple<string, string>>(); 
+
+            foreach (XmlNode xn in nodeList)
+            {
+                string outData = "<NewDataSet>" + xn["data"].InnerXml + "</NewDataSet>";
+                string fileName = xn["nameOfFile"].InnerText;
+                retList.Add(new Tuple<string, string>(fileName, outData)); 
+            }
+            
+            return retList; 
+        }
+        
+        public string GetWITHLOCK ()
+        {
+            return GetSalesQueue("WITHLOCK");
+        }
+
+        public string GetUNLOCK()
+        {
+            return GetSalesQueue("UNLOCK");
+        }
+
+        public string GetDELETE()
+        {
+            return GetSalesQueue("DELETE");
+        }
+
+        /// <summary>
+        /// This is a customise GET for salesqueue service. 
+        /// </summary>
+        /// <param name="action">value: WITHLOCK, DELETE, UNLOCK</param>
+        /// <returns></returns>
+        internal string GetSalesQueue(string action)
+        {
+            var query = FILTER_STR_HEADER ;
+            if (!string.IsNullOrEmpty(action))
+            {
+                query += action; 
+            }
+
+            var path = GenerateGetPath(HttpMethods.GET, query);
+            WebClient.ReturnType = BreezeReturnType.xml;
+            var ret = WebClient.Get(path).ToString();
+            return ret; 
+        }
     }
 
     public class SaleQueueCountService : BreezeServiceBase, IDisposable
@@ -69,5 +121,7 @@ namespace Datapel.BreezeAPI.SDK.Service
         }
 
     }
+
+
 
 }

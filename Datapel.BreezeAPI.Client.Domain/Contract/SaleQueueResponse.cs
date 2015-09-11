@@ -20,6 +20,6 @@ namespace Datapel.BreezeAPI.SDK.Contract
     public class SaleQueueCountResponse
     {
         public int fileCount { get; set; }
-    }
+    }    
 
 }

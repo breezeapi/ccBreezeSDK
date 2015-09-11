@@ -10,6 +10,7 @@ using Datapel.BreezeAPI.SDK;
 using Datapel.BreezeAPI.SDK.Service;
 using Datapel.BreezeAPI.SDK.Contract;
 using System.Reflection;
+using System.Xml;
 
 namespace Datapel.BreezeAPI.Sample
 {
@@ -19,6 +20,9 @@ namespace Datapel.BreezeAPI.Sample
         public frmMain()
         {
             InitializeComponent();
+#if ! DEBUG
+            tabCtrl.TabPages.Remove(tabDevTest); 
+#endif      
         }
 
         private void btnGetToken_Click(object sender, EventArgs e)
@@ -219,6 +223,19 @@ namespace Datapel.BreezeAPI.Sample
         private void txtSaveQuery_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnRunTest_Click(object sender, EventArgs e)
+        {
+            var xmlDoc = new XmlDocument();
+            xmlDoc.LoadXml(txtRunInput.Text);
+            var nodeList = xmlDoc.SelectNodes("/SalesQueueXml/salesQueue/SalesQueue");
+
+            foreach (XmlNode xn in nodeList)
+            {
+                string outData = "<NewDataSet>" + xn["data"].InnerXml + "</NewDataSet>";
+                txtRunOutput.Text += xn["nameOfFile"].InnerText + "\n\r" + outData + "\n\r\n\r"; 
+            }
         }
     }
 }

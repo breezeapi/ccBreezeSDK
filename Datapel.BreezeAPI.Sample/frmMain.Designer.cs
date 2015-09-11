@@ -83,6 +83,12 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tabDevTest = new System.Windows.Forms.TabPage();
+            this.txtRunInput = new System.Windows.Forms.TextBox();
+            this.txtRunOutput = new System.Windows.Forms.TextBox();
+            this.btnRunTest = new System.Windows.Forms.Button();
+            this.lblInput = new System.Windows.Forms.Label();
+            this.lblOutput = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tabCtrl.SuspendLayout();
             this.tabBasic.SuspendLayout();
@@ -92,6 +98,7 @@
             this.tabServiceSave.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSaveReturn)).BeginInit();
+            this.tabDevTest.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGetToken
@@ -291,6 +298,7 @@
             this.tabCtrl.Controls.Add(this.tabBasic);
             this.tabCtrl.Controls.Add(this.tabServiceGet);
             this.tabCtrl.Controls.Add(this.tabServiceSave);
+            this.tabCtrl.Controls.Add(this.tabDevTest);
             this.tabCtrl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabCtrl.Location = new System.Drawing.Point(0, 0);
             this.tabCtrl.Name = "tabCtrl";
@@ -629,6 +637,65 @@
             this.textBox3.Size = new System.Drawing.Size(467, 20);
             this.textBox3.TabIndex = 24;
             // 
+            // tabDevTest
+            // 
+            this.tabDevTest.Controls.Add(this.lblOutput);
+            this.tabDevTest.Controls.Add(this.lblInput);
+            this.tabDevTest.Controls.Add(this.btnRunTest);
+            this.tabDevTest.Controls.Add(this.txtRunOutput);
+            this.tabDevTest.Controls.Add(this.txtRunInput);
+            this.tabDevTest.Location = new System.Drawing.Point(4, 22);
+            this.tabDevTest.Name = "tabDevTest";
+            this.tabDevTest.Padding = new System.Windows.Forms.Padding(3);
+            this.tabDevTest.Size = new System.Drawing.Size(700, 370);
+            this.tabDevTest.TabIndex = 3;
+            this.tabDevTest.Text = "Dev Testing";
+            this.tabDevTest.UseVisualStyleBackColor = true;
+            // 
+            // txtRunInput
+            // 
+            this.txtRunInput.Location = new System.Drawing.Point(9, 36);
+            this.txtRunInput.Multiline = true;
+            this.txtRunInput.Name = "txtRunInput";
+            this.txtRunInput.Size = new System.Drawing.Size(605, 115);
+            this.txtRunInput.TabIndex = 0;
+            // 
+            // txtRunOutput
+            // 
+            this.txtRunOutput.Location = new System.Drawing.Point(9, 186);
+            this.txtRunOutput.Multiline = true;
+            this.txtRunOutput.Name = "txtRunOutput";
+            this.txtRunOutput.Size = new System.Drawing.Size(605, 173);
+            this.txtRunOutput.TabIndex = 1;
+            // 
+            // btnRunTest
+            // 
+            this.btnRunTest.Location = new System.Drawing.Point(620, 7);
+            this.btnRunTest.Name = "btnRunTest";
+            this.btnRunTest.Size = new System.Drawing.Size(75, 23);
+            this.btnRunTest.TabIndex = 27;
+            this.btnRunTest.Text = "Run Test";
+            this.btnRunTest.UseVisualStyleBackColor = true;
+            this.btnRunTest.Click += new System.EventHandler(this.btnRunTest_Click);
+            // 
+            // lblInput
+            // 
+            this.lblInput.AutoSize = true;
+            this.lblInput.Location = new System.Drawing.Point(9, 16);
+            this.lblInput.Name = "lblInput";
+            this.lblInput.Size = new System.Drawing.Size(31, 13);
+            this.lblInput.TabIndex = 28;
+            this.lblInput.Text = "Input";
+            // 
+            // lblOutput
+            // 
+            this.lblOutput.AutoSize = true;
+            this.lblOutput.Location = new System.Drawing.Point(9, 170);
+            this.lblOutput.Name = "lblOutput";
+            this.lblOutput.Size = new System.Drawing.Size(39, 13);
+            this.lblOutput.TabIndex = 29;
+            this.lblOutput.Text = "Output";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -649,6 +716,8 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSaveReturn)).EndInit();
+            this.tabDevTest.ResumeLayout(false);
+            this.tabDevTest.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -710,6 +779,12 @@
         private System.Windows.Forms.TextBox txtId2;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox txtID;
+        private System.Windows.Forms.TabPage tabDevTest;
+        private System.Windows.Forms.Label lblOutput;
+        private System.Windows.Forms.Label lblInput;
+        private System.Windows.Forms.Button btnRunTest;
+        private System.Windows.Forms.TextBox txtRunOutput;
+        private System.Windows.Forms.TextBox txtRunInput;
     }
 }
 
