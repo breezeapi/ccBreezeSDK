@@ -6,6 +6,7 @@ using System.Text;
 using System.Web;
 using System.Configuration;
 using System.Linq;
+using Datapel.BreezeAPI.SDK.Utils;
 
 
 namespace Datapel.BreezeAPI.SDK.Client
@@ -124,7 +125,7 @@ namespace Datapel.BreezeAPI.SDK.Client
 
             if (response.StatusCode != HttpStatusCode.Created &&
                 response.StatusCode != HttpStatusCode.OK)
-            {
+            {   
                 throw new WebException("", null, WebExceptionStatus.UnknownError, response); 
             }
 
@@ -289,7 +290,8 @@ namespace Datapel.BreezeAPI.SDK.Client
             }
             else
             {
-                header.Add(ContentEncodingHeader, "gzip");
+                if (UseCompression)
+                    header.Add(ContentEncodingHeader, "gzip");
             }
 
         }
