@@ -27,7 +27,7 @@ namespace Datapel.BreezeAPI.Sample
 
         private void btnGetToken_Click(object sender, EventArgs e)
         {
-            var authoriser = new Datapel.BreezeAPI.SDK.Client.APIAuthorizer();
+            var authoriser = new Datapel.BreezeAPI.SDK.Client.APIAuthorizer(txtServerUrl.Text);
             authoriseState = authoriser.AuthorizeClient(txtUser.Text, txtPwd.Text);
             txtBase64Auth.Text = authoriseState.AuthorisationCode;
             txtToken.Text = authoriseState.Auth_Token;

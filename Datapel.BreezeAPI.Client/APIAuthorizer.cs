@@ -18,7 +18,6 @@ namespace Datapel.BreezeAPI.SDK.Client
     /// </summary>
     public class APIAuthorizer
     {
-
         private string BreezeAPIPath = ConfigurationManager.AppSettings["BreezeAPI.MainPath"];
         private string returnType = ConfigurationManager.AppSettings["BreezeAPI.ReturnType"];
         private string AuthToken = ConfigurationManager.AppSettings["BreezeAPI.Header.AuthToken"];
@@ -27,6 +26,14 @@ namespace Datapel.BreezeAPI.SDK.Client
         public APIAuthorizer()
         { }
 
+        public APIAuthorizer(string breezeAPIPath, string breezeReturnType = "")
+        {
+            SetServerUrl(breezeAPIPath);
+            if (!string.IsNullOrEmpty(breezeReturnType))
+            {
+                returnType = breezeReturnType; 
+            }
+        }
 
         ///// <summary>
         ///// Creates an instance of this class in order to obtain the authorization

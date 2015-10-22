@@ -63,7 +63,16 @@ namespace Datapel.BreezeAPI.SDK.Service
 
             foreach (XmlNode xn in nodeList)
             {
-                string outData = "<NewDataSet>" + xn["data"].InnerXml + "</NewDataSet>";
+                //string outData = "<NewDataSet>" + xn["data"].InnerXml + "</NewDataSet>";
+                string outData = System.Net.WebUtility.HtmlDecode(xn["data"].InnerXml);
+                //if (!outData.StartsWith("<NewDataSet>"))
+                //{
+                //    outData = "<NewDataSet>" + outData;
+                //}
+                //if (!outData.EndsWith("</NewDataSet>"))
+                //{
+                //    outData = "</NewDataSet>" + outData;
+                //}
                 string fileName = xn["nameOfFile"].InnerText;
                 retList.Add(new Tuple<string, string>(fileName, outData)); 
             }

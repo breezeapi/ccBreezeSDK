@@ -104,12 +104,14 @@ namespace Datapel.BreezeAPI.SDK
             return list; 
         }
 
-
-        public void Dispose()
+        public string GetStringResponse(string query)
         {
-            //throw new NotImplementedException();
-            _authoriser = null;
-            WebClient = null; 
+            return GetBareString(query); 
+        }
+
+        public new void Dispose()
+        {
+            base.Dispose();
         }
     }
 
@@ -161,15 +163,20 @@ namespace Datapel.BreezeAPI.SDK
                 {
                     _authoriser = new APIAuthorizer();
                 }
-                if (!string.IsNullOrEmpty(ServerUrl)) _authoriser.SetServerUrl(ServerUrl);
+                if (!string.IsNullOrEmpty(state.BreezeAPIPath)) _authoriser.SetServerUrl(state.BreezeAPIPath);
+                else if (!string.IsNullOrEmpty(ServerUrl)) _authoriser.SetServerUrl(ServerUrl);
+
                 State = _authoriser.AuthorizeClient(state.AuthorisationCode);
+                if (!string.IsNullOrEmpty(state.BreezeAPIPath))
+                    State.BreezeAPIPath = state.BreezeAPIPath; 
             }
 
             //if (WebClient == null)
             {
                 WebClient = new APIClient(State);
                 WebClient.UseCompression = _useCompression;
-                if (!string.IsNullOrEmpty(ServerUrl)) WebClient.SetServerUrl(ServerUrl);                
+                if (!string.IsNullOrEmpty(State.BreezeAPIPath)) _authoriser.SetServerUrl(State.BreezeAPIPath);
+                else if (!string.IsNullOrEmpty(ServerUrl)) WebClient.SetServerUrl(ServerUrl);                
             }
         }
 
@@ -215,11 +222,18 @@ namespace Datapel.BreezeAPI.SDK
 
         protected T Get<T>(string query)
         {
+            var ret = GetBareString(query);
+
+            return DeserializeObject<T>(ret); 
+        }
+
+        protected string GetBareString(string query)
+        {
             var path = GenerateGetPath(HttpMethods.GET, query);
 
             var ret = WebClient.Get(path).ToString();
 
-            return DeserializeObject<T>(ret); 
+            return ret;
         }
 
         protected T DeserializeObject<T>(string strJSON)

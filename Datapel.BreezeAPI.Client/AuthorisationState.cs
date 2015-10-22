@@ -15,7 +15,12 @@ namespace Datapel.BreezeAPI.SDK.Client
             isAuthorised = false; 
         }
 
-        string _errorMsg = string.Empty; 
+        string _errorMsg = string.Empty;
+
+        /// <summary>
+        /// Breeze API server URL and Port. 
+        /// </summary>
+        public string BreezeAPIPath { get; set; }
 
         /// <summary>
         /// Auth token return from Breeze API server. 
