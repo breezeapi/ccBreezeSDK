@@ -84,11 +84,13 @@
             this.label15 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.tabDevTest = new System.Windows.Forms.TabPage();
-            this.txtRunInput = new System.Windows.Forms.TextBox();
-            this.txtRunOutput = new System.Windows.Forms.TextBox();
-            this.btnRunTest = new System.Windows.Forms.Button();
-            this.lblInput = new System.Windows.Forms.Label();
             this.lblOutput = new System.Windows.Forms.Label();
+            this.lblInput = new System.Windows.Forms.Label();
+            this.btnRunTest = new System.Windows.Forms.Button();
+            this.txtRunOutput = new System.Windows.Forms.TextBox();
+            this.txtRunInput = new System.Windows.Forms.TextBox();
+            this.lblServer = new System.Windows.Forms.Label();
+            this.txtServerUrl = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tabCtrl.SuspendLayout();
             this.tabBasic.SuspendLayout();
@@ -103,7 +105,7 @@
             // 
             // btnGetToken
             // 
-            this.btnGetToken.Location = new System.Drawing.Point(588, 15);
+            this.btnGetToken.Location = new System.Drawing.Point(588, 38);
             this.btnGetToken.Name = "btnGetToken";
             this.btnGetToken.Size = new System.Drawing.Size(75, 23);
             this.btnGetToken.TabIndex = 0;
@@ -113,7 +115,7 @@
             // 
             // txtUser
             // 
-            this.txtUser.Location = new System.Drawing.Point(89, 17);
+            this.txtUser.Location = new System.Drawing.Point(89, 40);
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(179, 20);
             this.txtUser.TabIndex = 1;
@@ -121,7 +123,7 @@
             // 
             // txtPwd
             // 
-            this.txtPwd.Location = new System.Drawing.Point(347, 17);
+            this.txtPwd.Location = new System.Drawing.Point(347, 40);
             this.txtPwd.Name = "txtPwd";
             this.txtPwd.Size = new System.Drawing.Size(209, 20);
             this.txtPwd.TabIndex = 2;
@@ -130,14 +132,14 @@
             // 
             // txtToken
             // 
-            this.txtToken.Location = new System.Drawing.Point(347, 43);
+            this.txtToken.Location = new System.Drawing.Point(347, 66);
             this.txtToken.Name = "txtToken";
             this.txtToken.Size = new System.Drawing.Size(209, 20);
             this.txtToken.TabIndex = 3;
             // 
             // txtBase64Auth
             // 
-            this.txtBase64Auth.Location = new System.Drawing.Point(89, 43);
+            this.txtBase64Auth.Location = new System.Drawing.Point(89, 66);
             this.txtBase64Auth.Name = "txtBase64Auth";
             this.txtBase64Auth.Size = new System.Drawing.Size(179, 20);
             this.txtBase64Auth.TabIndex = 4;
@@ -145,7 +147,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 20);
+            this.label1.Location = new System.Drawing.Point(27, 43);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 5;
@@ -154,7 +156,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(274, 20);
+            this.label2.Location = new System.Drawing.Point(274, 43);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 6;
@@ -163,7 +165,7 @@
             // lblToken
             // 
             this.lblToken.AutoSize = true;
-            this.lblToken.Location = new System.Drawing.Point(274, 46);
+            this.lblToken.Location = new System.Drawing.Point(274, 69);
             this.lblToken.Name = "lblToken";
             this.lblToken.Size = new System.Drawing.Size(34, 13);
             this.lblToken.TabIndex = 7;
@@ -172,7 +174,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 46);
+            this.label4.Location = new System.Drawing.Point(14, 69);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 13);
             this.label4.TabIndex = 8;
@@ -181,7 +183,7 @@
             // chkIsAuthorised
             // 
             this.chkIsAuthorised.AutoSize = true;
-            this.chkIsAuthorised.Location = new System.Drawing.Point(89, 69);
+            this.chkIsAuthorised.Location = new System.Drawing.Point(89, 92);
             this.chkIsAuthorised.Name = "chkIsAuthorised";
             this.chkIsAuthorised.Size = new System.Drawing.Size(87, 17);
             this.chkIsAuthorised.TabIndex = 9;
@@ -190,7 +192,7 @@
             // 
             // txtErrorMsg
             // 
-            this.txtErrorMsg.Location = new System.Drawing.Point(89, 101);
+            this.txtErrorMsg.Location = new System.Drawing.Point(89, 124);
             this.txtErrorMsg.Name = "txtErrorMsg";
             this.txtErrorMsg.Size = new System.Drawing.Size(467, 20);
             this.txtErrorMsg.TabIndex = 10;
@@ -198,7 +200,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(30, 104);
+            this.label3.Location = new System.Drawing.Point(30, 127);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 13);
             this.label3.TabIndex = 11;
@@ -206,7 +208,7 @@
             // 
             // btnReq
             // 
-            this.btnReq.Location = new System.Drawing.Point(588, 134);
+            this.btnReq.Location = new System.Drawing.Point(588, 157);
             this.btnReq.Name = "btnReq";
             this.btnReq.Size = new System.Drawing.Size(75, 23);
             this.btnReq.TabIndex = 12;
@@ -216,7 +218,7 @@
             // 
             // txtEndpoint
             // 
-            this.txtEndpoint.Location = new System.Drawing.Point(89, 136);
+            this.txtEndpoint.Location = new System.Drawing.Point(89, 159);
             this.txtEndpoint.Name = "txtEndpoint";
             this.txtEndpoint.Size = new System.Drawing.Size(179, 20);
             this.txtEndpoint.TabIndex = 13;
@@ -224,7 +226,7 @@
             // 
             // txtQuery
             // 
-            this.txtQuery.Location = new System.Drawing.Point(347, 136);
+            this.txtQuery.Location = new System.Drawing.Point(347, 159);
             this.txtQuery.Name = "txtQuery";
             this.txtQuery.Size = new System.Drawing.Size(209, 20);
             this.txtQuery.TabIndex = 14;
@@ -233,7 +235,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(274, 139);
+            this.label5.Location = new System.Drawing.Point(274, 162);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 13);
             this.label5.TabIndex = 15;
@@ -242,7 +244,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(33, 139);
+            this.label6.Location = new System.Drawing.Point(33, 162);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 13);
             this.label6.TabIndex = 16;
@@ -250,17 +252,17 @@
             // 
             // txtResult
             // 
-            this.txtResult.Location = new System.Drawing.Point(89, 171);
+            this.txtResult.Location = new System.Drawing.Point(89, 194);
             this.txtResult.Multiline = true;
             this.txtResult.Name = "txtResult";
             this.txtResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtResult.Size = new System.Drawing.Size(467, 173);
+            this.txtResult.Size = new System.Drawing.Size(467, 147);
             this.txtResult.TabIndex = 17;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(45, 174);
+            this.label7.Location = new System.Drawing.Point(45, 197);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(37, 13);
             this.label7.TabIndex = 18;
@@ -268,6 +270,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lblServer);
+            this.panel1.Controls.Add(this.txtServerUrl);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.btnGetToken);
@@ -652,21 +656,23 @@
             this.tabDevTest.Text = "Dev Testing";
             this.tabDevTest.UseVisualStyleBackColor = true;
             // 
-            // txtRunInput
+            // lblOutput
             // 
-            this.txtRunInput.Location = new System.Drawing.Point(9, 36);
-            this.txtRunInput.Multiline = true;
-            this.txtRunInput.Name = "txtRunInput";
-            this.txtRunInput.Size = new System.Drawing.Size(605, 115);
-            this.txtRunInput.TabIndex = 0;
+            this.lblOutput.AutoSize = true;
+            this.lblOutput.Location = new System.Drawing.Point(9, 170);
+            this.lblOutput.Name = "lblOutput";
+            this.lblOutput.Size = new System.Drawing.Size(39, 13);
+            this.lblOutput.TabIndex = 29;
+            this.lblOutput.Text = "Output";
             // 
-            // txtRunOutput
+            // lblInput
             // 
-            this.txtRunOutput.Location = new System.Drawing.Point(9, 186);
-            this.txtRunOutput.Multiline = true;
-            this.txtRunOutput.Name = "txtRunOutput";
-            this.txtRunOutput.Size = new System.Drawing.Size(605, 173);
-            this.txtRunOutput.TabIndex = 1;
+            this.lblInput.AutoSize = true;
+            this.lblInput.Location = new System.Drawing.Point(9, 16);
+            this.lblInput.Name = "lblInput";
+            this.lblInput.Size = new System.Drawing.Size(31, 13);
+            this.lblInput.TabIndex = 28;
+            this.lblInput.Text = "Input";
             // 
             // btnRunTest
             // 
@@ -678,23 +684,38 @@
             this.btnRunTest.UseVisualStyleBackColor = true;
             this.btnRunTest.Click += new System.EventHandler(this.btnRunTest_Click);
             // 
-            // lblInput
+            // txtRunOutput
             // 
-            this.lblInput.AutoSize = true;
-            this.lblInput.Location = new System.Drawing.Point(9, 16);
-            this.lblInput.Name = "lblInput";
-            this.lblInput.Size = new System.Drawing.Size(31, 13);
-            this.lblInput.TabIndex = 28;
-            this.lblInput.Text = "Input";
+            this.txtRunOutput.Location = new System.Drawing.Point(9, 186);
+            this.txtRunOutput.Multiline = true;
+            this.txtRunOutput.Name = "txtRunOutput";
+            this.txtRunOutput.Size = new System.Drawing.Size(605, 173);
+            this.txtRunOutput.TabIndex = 1;
             // 
-            // lblOutput
+            // txtRunInput
             // 
-            this.lblOutput.AutoSize = true;
-            this.lblOutput.Location = new System.Drawing.Point(9, 170);
-            this.lblOutput.Name = "lblOutput";
-            this.lblOutput.Size = new System.Drawing.Size(39, 13);
-            this.lblOutput.TabIndex = 29;
-            this.lblOutput.Text = "Output";
+            this.txtRunInput.Location = new System.Drawing.Point(9, 36);
+            this.txtRunInput.Multiline = true;
+            this.txtRunInput.Name = "txtRunInput";
+            this.txtRunInput.Size = new System.Drawing.Size(605, 115);
+            this.txtRunInput.TabIndex = 0;
+            // 
+            // lblServer
+            // 
+            this.lblServer.AutoSize = true;
+            this.lblServer.Location = new System.Drawing.Point(27, 17);
+            this.lblServer.Name = "lblServer";
+            this.lblServer.Size = new System.Drawing.Size(54, 13);
+            this.lblServer.TabIndex = 20;
+            this.lblServer.Text = "Server Url";
+            // 
+            // txtServerUrl
+            // 
+            this.txtServerUrl.Location = new System.Drawing.Point(89, 14);
+            this.txtServerUrl.Name = "txtServerUrl";
+            this.txtServerUrl.Size = new System.Drawing.Size(179, 20);
+            this.txtServerUrl.TabIndex = 19;
+            this.txtServerUrl.Text = "http://localhost:8181/";
             // 
             // frmMain
             // 
@@ -785,6 +806,8 @@
         private System.Windows.Forms.Button btnRunTest;
         private System.Windows.Forms.TextBox txtRunOutput;
         private System.Windows.Forms.TextBox txtRunInput;
+        private System.Windows.Forms.Label lblServer;
+        private System.Windows.Forms.TextBox txtServerUrl;
     }
 }
 

@@ -29,6 +29,7 @@ namespace Datapel.BreezeAPI.Sample
         {
             var authoriser = new Datapel.BreezeAPI.SDK.Client.APIAuthorizer(txtServerUrl.Text);
             authoriseState = authoriser.AuthorizeClient(txtUser.Text, txtPwd.Text);
+            authoriseState.BreezeAPIPath = txtServerUrl.Text; 
             txtBase64Auth.Text = authoriseState.AuthorisationCode;
             txtToken.Text = authoriseState.Auth_Token;
             chkIsAuthorised.Checked = authoriseState.isAuthorised;
@@ -40,6 +41,7 @@ namespace Datapel.BreezeAPI.Sample
             if (authoriseState == null || !authoriseState.isAuthorised)
                 return; 
             var client = new Datapel.BreezeAPI.SDK.Client.APIClient(authoriseState);
+            client.SetServerUrl(authoriseState.BreezeAPIPath);
             var tempStr = txtEndpoint.Text + "?" + txtQuery.Text; 
             var result = client.Get(tempStr);
             txtResult.Text = result.ToString();
@@ -84,20 +86,19 @@ namespace Datapel.BreezeAPI.Sample
 
             }
         }
-
+        #region Service Get Method
         private void GetItem ()
         {
             var service = new ItemService();
-            service.Authorised(txtUser.Text, txtPwd.Text);
+            AuthorisedService(service);  
             int pagesize = Convert.ToInt16(txtPageSize.Text);
             int pageSkip = Convert.ToInt16(txtPage.Text) * pagesize;
             dgvReturn.DataSource = service.GetList(txtQuery2.Text, pageSkip, pagesize);
         }
-
         private void GetInventoryList()
         {
             var service = new InventoryListService();
-            service.Authorised(txtUser.Text, txtPwd.Text);
+            AuthorisedService(service); 
             int pagesize = Convert.ToInt16(txtPageSize.Text);
             int pageSkip = Convert.ToInt16(txtPage.Text) * pagesize;
             var inList = service.GetListByLocationId(txtID.Text);
@@ -107,14 +108,13 @@ namespace Datapel.BreezeAPI.Sample
         private void GetInventory()
         {
             var service = new InventoryService();
-            service.Authorised(txtUser.Text, txtPwd.Text);
+            AuthorisedService(service); 
             dgvReturn.DataSource = service.GetInventoryById(txtID.Text);
         }
-
         private void GetContactList()
         {
             var service = new ContactListService();
-            service.Authorised(txtUser.Text, txtPwd.Text);
+            AuthorisedService(service); 
             int pagesize = Convert.ToInt16(txtPageSize.Text);
             int pageSkip = Convert.ToInt16(txtPage.Text) * pagesize;
             dgvReturn.DataSource = service.GetList(txtQuery2.Text, pageSkip, pagesize);
@@ -122,28 +122,27 @@ namespace Datapel.BreezeAPI.Sample
         private void GetContact()
         {
             var service = new ContactService();
-            service.Authorised(txtUser.Text, txtPwd.Text);       
+            AuthorisedService(service);        
             dgvReturn.DataSource = service.GetContactById(txtID.Text);
         }
         private void GetAddressList()
         {
             var service = new AddressListService();
-            service.Authorised(txtUser.Text, txtPwd.Text);
+            AuthorisedService(service); 
             dgvReturn.DataSource = service.GetAddressById(txtID.Text);
         }
         private void GetPriceList()
         {
             var service = new PriceListService();
-            service.Authorised(txtUser.Text, txtPwd.Text);
+            AuthorisedService(service); 
             int pagesize = Convert.ToInt16(txtPageSize.Text);
             int pageSkip = Convert.ToInt16(txtPage.Text) * pagesize;
             dgvReturn.DataSource = service.GetPriceList(txtID.Text, txtId2.Text); 
         }
-
         private void GetSaleList()
         {
             var service = new SaleListService();
-            service.Authorised(txtUser.Text, txtPwd.Text);
+            AuthorisedService(service); 
             int pagesize = Convert.ToInt16(txtPageSize.Text);
             int pageSkip = Convert.ToInt16(txtPage.Text) * pagesize;
             dgvReturn.DataSource = service.GetSaleListByMYOBCardId(txtID.Text); 
@@ -151,20 +150,28 @@ namespace Datapel.BreezeAPI.Sample
         private void GetSale()
         {
             var service = new SaleService();
-            service.Authorised(txtUser.Text, txtPwd.Text);
+            AuthorisedService(service); 
             int pagesize = Convert.ToInt16(txtPageSize.Text);
             int pageSkip = Convert.ToInt16(txtPage.Text) * pagesize;
             dgvReturn.DataSource = service.GetSaleBySaleId(txtID.Text);
         }
-
         private void GetLocation()
         {
             var service = new LocationService();
-            service.Authorised(txtUser.Text, txtPwd.Text);
+            AuthorisedService(service); 
             int pagesize = Convert.ToInt16(txtPageSize.Text);
             int pageSkip = Convert.ToInt16(txtPage.Text) * pagesize;
             dgvReturn.DataSource = service.GetLocationByName(txtID.Text);
         }
+        
+        private void AuthorisedService(BreezeServiceBase service)
+        {
+            service.ServerUrl = txtServerUrl.Text;
+            service.Authorised(txtUser.Text, txtPwd.Text);
+        }
+        
+
+        #endregion
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -188,7 +195,7 @@ namespace Datapel.BreezeAPI.Sample
             int pagesize = Convert.ToInt16(txtPageSize.Text);
             int pageSkip = Convert.ToInt16(txtPage.Text) * pagesize;
 
-            service.Authorised(txtUser.Text, txtPwd.Text);
+            AuthorisedService(service); 
             var itemList = service.GetList(query, pageSkip, pagesize);
             return itemList; 
         }
