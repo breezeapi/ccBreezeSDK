@@ -38,7 +38,7 @@ namespace Datapel.BreezeAPI.SDK.Contract
         public string returnedsrn { get; set; }
         public DateTime saledate { get; set; }
         public int saleid { get; set; }
-        public int status { get; set; }
+        public int? status { get; set; }
         public string shippingmethod { get; set; }
         public string shipnote { get; set; }
         public string shiptoaddressline1 { get; set; }
