@@ -23,13 +23,28 @@ namespace Datapel.BreezeAPI.SDK.Service
             return GetList(query, 0, 0);      
         }
 
-        public IList<BaseSale> GetSaleListOrder(string query="filter~*")
+        public IList<BaseSale> GetSaleListOrder(string query="filter~*", SaleQueryType qType= SaleQueryType.ALLSALES)
         {
+            if (qType != SaleQueryType.ALLSALES)
+            {
+                query += "&QUERYTYPE=" + qType.ToString();
+            }
+
             var ret = Get<SaleList>(query);
 
             return ret.orders; 
         }
 
 
+    }
+
+    public enum SaleQueryType
+    {
+        ALLSALES,
+        SHIPPED,
+        BACKORDER,
+        RETURNED,
+        INPROGRESS,
+        QUOTES
     }
 }
