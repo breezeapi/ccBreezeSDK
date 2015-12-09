@@ -50,6 +50,25 @@ namespace Datapel.BreezeAPI.SDK.Client
         }
 
         /// <summary>
+        /// Upload file to server 
+        /// </summary>
+        /// <param name="path">Endpoint path</param>
+        /// <param name="fullFilePath">full path with filename to be uploaded.</param>
+        /// <returns></returns>
+        public object UploadFile(string path, string fullFilePath)
+        {
+            string url = (BreezeAPIPath.EndsWith("/") ? BreezeAPIPath : (BreezeAPIPath += "/")) + ReturnTypeString + "/"; // hard code to json to get the Auth_token.            
+            url += path;
+
+            WebClient request = new WebClient();
+            SetHeader(request.Headers);
+            byte[] responseArray = request.UploadFile(url, fullFilePath);
+
+            return System.Text.Encoding.ASCII.GetString(responseArray);
+        }
+ 
+
+        /// <summary>
         /// Make an HTTP Request to the API
         /// </summary>
         /// <param name="method">method to be used in the request</param>
@@ -76,7 +95,7 @@ namespace Datapel.BreezeAPI.SDK.Client
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.ContentType = GetRequestContentType();                    
             request.Method = method.ToString();
-            SetHeader(request); 
+            SetHeader(request.Headers); 
 
             if (callParams != null)
             {
@@ -261,9 +280,9 @@ namespace Datapel.BreezeAPI.SDK.Client
         /// </example>
         protected IDataTranslator Translator { get; set; }
         
-        protected void SetHeader (HttpWebRequest webrq)
+        protected void SetHeader (WebHeaderCollection header)
         {
-            var header = webrq.Headers;
+            //var header = webrq.Headers;
 
             if (header.AllKeys.Any(k => k == AuthTokenHeader))
             {
@@ -305,6 +324,9 @@ namespace Datapel.BreezeAPI.SDK.Client
         }
 
         public bool UseCompression { get; set; }
+    
+    
+    
     }
 
     public enum HttpMethods

@@ -76,6 +76,23 @@ namespace Datapel.BreezeAPI.SDK.Service
             return ret;
         }
 
+        protected string UploadFile (string filename, UploadFileType fileType)
+        {
+            var query = FILTER_STR_HEADER + "*&UploadFileType=" + fileType.ToString();
+            var path = GenerateGetPath(HttpMethods.POST, query);
+            return WebClient.UploadFile(path, filename).ToString();
+        }
+
+        public string UploadReplicateData(string filename)
+        {
+            return UploadFile(filename, UploadFileType.ReplicateData); 
+        }
+
+        public string UploadReportForm(string filename)
+        {
+            return UploadFile(filename, UploadFileType.ReportForm);
+        }
+
         protected string GetJsonStringFromArray(ReplicationQuery[] rq, int start, int count)
         {
             string ret = string.Empty, json = string.Empty ;
@@ -134,6 +151,13 @@ namespace Datapel.BreezeAPI.SDK.Service
             }
         }
     }
+
+    public enum UploadFileType
+    {
+        ReplicateData,
+        ReportForm
+    }
+
 
     public class ReplicationQuery
     {
