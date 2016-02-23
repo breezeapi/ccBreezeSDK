@@ -76,16 +76,16 @@ namespace Datapel.BreezeAPI.SDK.Service
             return ret;
         }
 
-        protected string UploadFile (string filename, UploadFileType fileType)
+        protected string UploadFile (string filename, UploadFileType fileType, int? timeout =null)
         {
             var query = FILTER_STR_HEADER + "*&UploadFileType=" + fileType.ToString();
             var path = GenerateGetPath(HttpMethods.POST, query);
-            return WebClient.UploadFile(path, filename).ToString();
+            return WebClient.UploadFile(path, filename, timeout).ToString();
         }
 
-        public string UploadReplicateData(string filename)
+        public string UploadReplicateData(string filename, int? timeout =null)
         {
-            return UploadFile(filename, UploadFileType.ReplicateData); 
+            return UploadFile(filename, UploadFileType.ReplicateData, timeout); 
         }
 
         public string UploadReportForm(string filename)

@@ -55,15 +55,22 @@ namespace Datapel.BreezeAPI.SDK.Client
         /// <param name="path">Endpoint path</param>
         /// <param name="fullFilePath">full path with filename to be uploaded.</param>
         /// <returns></returns>
-        public object UploadFile(string path, string fullFilePath)
+        public object UploadFile(string path, string fullFilePath, int? timeout = null )
         {
             string url = (BreezeAPIPath.EndsWith("/") ? BreezeAPIPath : (BreezeAPIPath += "/")) + ReturnTypeString + "/"; // hard code to json to get the Auth_token.            
             url += path;
 
-            WebClient request = new WebClient();
+            ExtWebClient request = new ExtWebClient();
             SetHeader(request.Headers);
+            if (timeout.HasValue)
+            {
+                request.Timeout = timeout.Value;
+            }
+            else
+            {
+                request.Timeout = 6000000;
+            }
             byte[] responseArray = request.UploadFile(url, fullFilePath);
-
             return System.Text.Encoding.ASCII.GetString(responseArray);
         }
  
@@ -343,6 +350,40 @@ namespace Datapel.BreezeAPI.SDK.Client
         html,
         xml,
         pdf
+    }
+
+    public class ExtWebClient : WebClient
+    {
+        //time in milliseconds
+        private int timeout;
+        public int Timeout
+        {
+            get
+            {
+                return timeout;
+            }
+            set
+            {
+                timeout = value;
+            }
+        }
+
+        public ExtWebClient()
+        {
+            this.timeout = 3600000;
+        }
+
+        public ExtWebClient(int timeout)
+        {
+            this.timeout = timeout;
+        }
+
+        protected override WebRequest GetWebRequest(Uri address)
+        {
+            var result = base.GetWebRequest(address);
+            result.Timeout = this.timeout;
+            return result;
+        }
     }
 
  
