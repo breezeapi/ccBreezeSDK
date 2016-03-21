@@ -102,6 +102,8 @@ namespace Datapel.BreezeAPI.SDK.Client
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.ContentType = GetRequestContentType();                    
             request.Method = method.ToString();
+            request.Timeout = RequestTimeOut;
+            request.ReadWriteTimeout = RequestTimeOut; 
             SetHeader(request.Headers); 
 
             if (callParams != null)
@@ -331,9 +333,36 @@ namespace Datapel.BreezeAPI.SDK.Client
         }
 
         public bool UseCompression { get; set; }
-    
-    
-    
+
+        int _requestTimeout = -1; 
+        public int RequestTimeOut
+        {
+            get
+            {
+                if (_requestTimeout <= 0)
+                {
+                    try
+                    {
+                        var timeoutString = ConfigurationManager.AppSettings["BreezeAPI.Request.Timeout"];
+
+                        _requestTimeout = Convert.ToInt32(timeoutString); 
+                    }
+                    catch
+                    {
+                        _requestTimeout = 120000; //set to 2 min; 
+                    }
+                    finally
+                    {
+                        
+                    }
+                }
+                return _requestTimeout; 
+            }
+            set
+            {
+                _requestTimeout = value; 
+            }
+        }    
     }
 
     public enum HttpMethods

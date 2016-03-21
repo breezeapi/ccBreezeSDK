@@ -186,7 +186,7 @@ namespace Datapel.BreezeAPI.SDK
             string querystring = string.IsNullOrEmpty(query) ? string.Empty : query;
             if (method == HttpMethods.GET)
             {
-                querystring += string.IsNullOrEmpty(querystring) ? "" : "&" + "$top=" + pagesize.ToString() + "&" + "$skip=" + page.ToString();
+                //querystring += string.IsNullOrEmpty(querystring) ? "" : "&" + "$top=" + pagesize.ToString() + "&" + "$skip=" + page.ToString();
             }
             path += string.IsNullOrEmpty(querystring) ? "" : ("?" + querystring);
             return path;
