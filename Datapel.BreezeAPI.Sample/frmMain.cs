@@ -265,7 +265,7 @@ namespace Datapel.BreezeAPI.Sample
         {
             var service = new ReplicateSlaveService();
             AuthorisedService(service);
-            var ret = service.UploadFile(fileName); 
+            var ret = service.UploadFile(fileName, UploadFileType.ReportForm); 
             return ret; 
         }
     }

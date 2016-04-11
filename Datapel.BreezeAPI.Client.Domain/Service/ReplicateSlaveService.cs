@@ -76,7 +76,7 @@ namespace Datapel.BreezeAPI.SDK.Service
             return ret;
         }
 
-        protected string UploadFile (string filename, UploadFileType fileType, int? timeout =null)
+        public string UploadFile (string filename, UploadFileType fileType, int? timeout =null)
         {
             var query = FILTER_STR_HEADER + "*&UploadFileType=" + fileType.ToString();
             var path = GenerateGetPath(HttpMethods.POST, query);
