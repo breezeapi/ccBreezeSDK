@@ -345,15 +345,19 @@ namespace Datapel.BreezeAPI.SDK.Client
                     {
                         var timeoutString = ConfigurationManager.AppSettings["BreezeAPI.Request.Timeout"];
 
-                        _requestTimeout = Convert.ToInt32(timeoutString); 
+                        _requestTimeout = Convert.ToInt32(timeoutString);
+                        
                     }
                     catch
                     {
-                        _requestTimeout = 120000; //set to 2 min; 
+                        _requestTimeout = 1200000; //set to 20 min; 
                     }
                     finally
                     {
-                        
+                        if (_requestTimeout <= 0) // time out cannot set to 0; 
+                        {
+                            _requestTimeout = 1200000; //set to 20 min;
+                        }
                     }
                 }
                 return _requestTimeout; 
