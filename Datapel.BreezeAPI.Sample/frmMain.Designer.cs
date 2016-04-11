@@ -48,7 +48,9 @@
             this.txtResult = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tabCtrl = new System.Windows.Forms.TabControl();
+            this.lblServer = new System.Windows.Forms.Label();
+            this.txtServerUrl = new System.Windows.Forms.TextBox();
+            this.tabMain = new System.Windows.Forms.TabControl();
             this.tabBasic = new System.Windows.Forms.TabPage();
             this.tabServiceGet = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -89,10 +91,19 @@
             this.btnRunTest = new System.Windows.Forms.Button();
             this.txtRunOutput = new System.Windows.Forms.TextBox();
             this.txtRunInput = new System.Windows.Forms.TextBox();
-            this.lblServer = new System.Windows.Forms.Label();
-            this.txtServerUrl = new System.Windows.Forms.TextBox();
+            this.tabUpload = new System.Windows.Forms.TabPage();
+            this.uploadFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.pnlUpload = new System.Windows.Forms.Panel();
+            this.txtUploadFileName = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.btnBrowseUpload = new System.Windows.Forms.Button();
+            this.btnUpload = new System.Windows.Forms.Button();
+            this.txtUploadEndPoint = new System.Windows.Forms.TextBox();
+            this.lblUploadEndPoint = new System.Windows.Forms.Label();
+            this.txtUploadReponse = new System.Windows.Forms.TextBox();
+            this.lblUploadResponse = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            this.tabCtrl.SuspendLayout();
+            this.tabMain.SuspendLayout();
             this.tabBasic.SuspendLayout();
             this.tabServiceGet.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -101,6 +112,8 @@
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSaveReturn)).BeginInit();
             this.tabDevTest.SuspendLayout();
+            this.tabUpload.SuspendLayout();
+            this.pnlUpload.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGetToken
@@ -297,18 +310,36 @@
             this.panel1.Size = new System.Drawing.Size(694, 364);
             this.panel1.TabIndex = 19;
             // 
-            // tabCtrl
+            // lblServer
             // 
-            this.tabCtrl.Controls.Add(this.tabBasic);
-            this.tabCtrl.Controls.Add(this.tabServiceGet);
-            this.tabCtrl.Controls.Add(this.tabServiceSave);
-            this.tabCtrl.Controls.Add(this.tabDevTest);
-            this.tabCtrl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabCtrl.Location = new System.Drawing.Point(0, 0);
-            this.tabCtrl.Name = "tabCtrl";
-            this.tabCtrl.SelectedIndex = 0;
-            this.tabCtrl.Size = new System.Drawing.Size(708, 396);
-            this.tabCtrl.TabIndex = 19;
+            this.lblServer.AutoSize = true;
+            this.lblServer.Location = new System.Drawing.Point(27, 17);
+            this.lblServer.Name = "lblServer";
+            this.lblServer.Size = new System.Drawing.Size(54, 13);
+            this.lblServer.TabIndex = 20;
+            this.lblServer.Text = "Server Url";
+            // 
+            // txtServerUrl
+            // 
+            this.txtServerUrl.Location = new System.Drawing.Point(89, 14);
+            this.txtServerUrl.Name = "txtServerUrl";
+            this.txtServerUrl.Size = new System.Drawing.Size(179, 20);
+            this.txtServerUrl.TabIndex = 19;
+            this.txtServerUrl.Text = "http://localhost:8181/";
+            // 
+            // tabMain
+            // 
+            this.tabMain.Controls.Add(this.tabBasic);
+            this.tabMain.Controls.Add(this.tabServiceGet);
+            this.tabMain.Controls.Add(this.tabServiceSave);
+            this.tabMain.Controls.Add(this.tabDevTest);
+            this.tabMain.Controls.Add(this.tabUpload);
+            this.tabMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabMain.Location = new System.Drawing.Point(0, 0);
+            this.tabMain.Name = "tabMain";
+            this.tabMain.SelectedIndex = 0;
+            this.tabMain.Size = new System.Drawing.Size(708, 396);
+            this.tabMain.TabIndex = 19;
             // 
             // tabBasic
             // 
@@ -700,34 +731,114 @@
             this.txtRunInput.Size = new System.Drawing.Size(605, 115);
             this.txtRunInput.TabIndex = 0;
             // 
-            // lblServer
+            // tabUpload
             // 
-            this.lblServer.AutoSize = true;
-            this.lblServer.Location = new System.Drawing.Point(27, 17);
-            this.lblServer.Name = "lblServer";
-            this.lblServer.Size = new System.Drawing.Size(54, 13);
-            this.lblServer.TabIndex = 20;
-            this.lblServer.Text = "Server Url";
+            this.tabUpload.Controls.Add(this.pnlUpload);
+            this.tabUpload.Location = new System.Drawing.Point(4, 22);
+            this.tabUpload.Name = "tabUpload";
+            this.tabUpload.Padding = new System.Windows.Forms.Padding(3);
+            this.tabUpload.Size = new System.Drawing.Size(700, 370);
+            this.tabUpload.TabIndex = 4;
+            this.tabUpload.Text = "File Upload";
+            this.tabUpload.UseVisualStyleBackColor = true;
             // 
-            // txtServerUrl
+            // pnlUpload
             // 
-            this.txtServerUrl.Location = new System.Drawing.Point(89, 14);
-            this.txtServerUrl.Name = "txtServerUrl";
-            this.txtServerUrl.Size = new System.Drawing.Size(179, 20);
-            this.txtServerUrl.TabIndex = 19;
-            this.txtServerUrl.Text = "http://localhost:8181/";
+            this.pnlUpload.Controls.Add(this.lblUploadResponse);
+            this.pnlUpload.Controls.Add(this.txtUploadReponse);
+            this.pnlUpload.Controls.Add(this.lblUploadEndPoint);
+            this.pnlUpload.Controls.Add(this.txtUploadEndPoint);
+            this.pnlUpload.Controls.Add(this.btnUpload);
+            this.pnlUpload.Controls.Add(this.btnBrowseUpload);
+            this.pnlUpload.Controls.Add(this.label20);
+            this.pnlUpload.Controls.Add(this.txtUploadFileName);
+            this.pnlUpload.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlUpload.Location = new System.Drawing.Point(3, 3);
+            this.pnlUpload.Name = "pnlUpload";
+            this.pnlUpload.Size = new System.Drawing.Size(694, 364);
+            this.pnlUpload.TabIndex = 0;
+            // 
+            // txtUploadFileName
+            // 
+            this.txtUploadFileName.Location = new System.Drawing.Point(118, 50);
+            this.txtUploadFileName.Name = "txtUploadFileName";
+            this.txtUploadFileName.ReadOnly = true;
+            this.txtUploadFileName.Size = new System.Drawing.Size(321, 20);
+            this.txtUploadFileName.TabIndex = 0;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(27, 54);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(58, 13);
+            this.label20.TabIndex = 1;
+            this.label20.Text = "File name: ";
+            // 
+            // btnBrowseUpload
+            // 
+            this.btnBrowseUpload.Location = new System.Drawing.Point(449, 49);
+            this.btnBrowseUpload.Name = "btnBrowseUpload";
+            this.btnBrowseUpload.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowseUpload.TabIndex = 2;
+            this.btnBrowseUpload.Text = "Browse";
+            this.btnBrowseUpload.UseVisualStyleBackColor = true;
+            this.btnBrowseUpload.Click += new System.EventHandler(this.btnBrowseUpload_Click);
+            // 
+            // btnUpload
+            // 
+            this.btnUpload.Location = new System.Drawing.Point(580, 49);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(75, 23);
+            this.btnUpload.TabIndex = 3;
+            this.btnUpload.Text = "Upload";
+            this.btnUpload.UseVisualStyleBackColor = true;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            // 
+            // txtUploadEndPoint
+            // 
+            this.txtUploadEndPoint.Location = new System.Drawing.Point(118, 24);
+            this.txtUploadEndPoint.Name = "txtUploadEndPoint";
+            this.txtUploadEndPoint.Size = new System.Drawing.Size(321, 20);
+            this.txtUploadEndPoint.TabIndex = 4;
+            // 
+            // lblUploadEndPoint
+            // 
+            this.lblUploadEndPoint.AutoSize = true;
+            this.lblUploadEndPoint.Location = new System.Drawing.Point(27, 27);
+            this.lblUploadEndPoint.Name = "lblUploadEndPoint";
+            this.lblUploadEndPoint.Size = new System.Drawing.Size(55, 13);
+            this.lblUploadEndPoint.TabIndex = 5;
+            this.lblUploadEndPoint.Text = "End point:";
+            // 
+            // txtUploadReponse
+            // 
+            this.txtUploadReponse.Location = new System.Drawing.Point(118, 95);
+            this.txtUploadReponse.Multiline = true;
+            this.txtUploadReponse.Name = "txtUploadReponse";
+            this.txtUploadReponse.Size = new System.Drawing.Size(321, 160);
+            this.txtUploadReponse.TabIndex = 6;
+            // 
+            // lblUploadResponse
+            // 
+            this.lblUploadResponse.AutoSize = true;
+            this.lblUploadResponse.Location = new System.Drawing.Point(27, 95);
+            this.lblUploadResponse.Name = "lblUploadResponse";
+            this.lblUploadResponse.Size = new System.Drawing.Size(55, 13);
+            this.lblUploadResponse.TabIndex = 7;
+            this.lblUploadResponse.Text = "Response";
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(708, 396);
-            this.Controls.Add(this.tabCtrl);
+            this.Controls.Add(this.tabMain);
             this.Name = "frmMain";
             this.Text = "Breeze API Tester.";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.tabCtrl.ResumeLayout(false);
+            this.tabMain.ResumeLayout(false);
             this.tabBasic.ResumeLayout(false);
             this.tabServiceGet.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -739,6 +850,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvSaveReturn)).EndInit();
             this.tabDevTest.ResumeLayout(false);
             this.tabDevTest.PerformLayout();
+            this.tabUpload.ResumeLayout(false);
+            this.pnlUpload.ResumeLayout(false);
+            this.pnlUpload.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -765,7 +879,7 @@
         private System.Windows.Forms.TextBox txtResult;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TabControl tabCtrl;
+        private System.Windows.Forms.TabControl tabMain;
         private System.Windows.Forms.TabPage tabBasic;
         private System.Windows.Forms.TabPage tabServiceGet;
         private System.Windows.Forms.Panel panel2;
@@ -808,6 +922,17 @@
         private System.Windows.Forms.TextBox txtRunInput;
         private System.Windows.Forms.Label lblServer;
         private System.Windows.Forms.TextBox txtServerUrl;
+        private System.Windows.Forms.TabPage tabUpload;
+        private System.Windows.Forms.Panel pnlUpload;
+        private System.Windows.Forms.Label lblUploadEndPoint;
+        private System.Windows.Forms.TextBox txtUploadEndPoint;
+        private System.Windows.Forms.Button btnUpload;
+        private System.Windows.Forms.Button btnBrowseUpload;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox txtUploadFileName;
+        private System.Windows.Forms.OpenFileDialog uploadFileDialog;
+        private System.Windows.Forms.Label lblUploadResponse;
+        private System.Windows.Forms.TextBox txtUploadReponse;
     }
 }
 

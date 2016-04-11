@@ -11,6 +11,7 @@ using Datapel.BreezeAPI.SDK.Service;
 using Datapel.BreezeAPI.SDK.Contract;
 using System.Reflection;
 using System.Xml;
+using System.Net;
 
 namespace Datapel.BreezeAPI.Sample
 {
@@ -21,7 +22,7 @@ namespace Datapel.BreezeAPI.Sample
         {
             InitializeComponent();
 #if ! DEBUG
-            tabCtrl.TabPages.Remove(tabDevTest); 
+            tabMain.TabPages.Remove(tabDevTest); 
 #endif      
         }
 
@@ -243,6 +244,29 @@ namespace Datapel.BreezeAPI.Sample
                 string outData = "<NewDataSet>" + xn["data"].InnerXml + "</NewDataSet>";
                 txtRunOutput.Text += xn["nameOfFile"].InnerText + "\n\r" + outData + "\n\r\n\r"; 
             }
+        }
+
+        private void btnBrowseUpload_Click(object sender, EventArgs e)
+        {
+            uploadFileDialog.Multiselect = false; 
+            if (uploadFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                txtUploadFileName.Text = uploadFileDialog.FileName; 
+            }
+        }
+
+        private void btnUpload_Click(object sender, EventArgs e)
+        {
+            var ret = UploadFile(txtUploadEndPoint.Text, txtUploadFileName.Text);
+            txtUploadReponse.Text = ret;
+        }
+
+        private string UploadFile(string Endpoint, string fileName)
+        {
+            var service = new ReplicateSlaveService();
+            AuthorisedService(service);
+            var ret = service.UploadFile(fileName); 
+            return ret; 
         }
     }
 }
