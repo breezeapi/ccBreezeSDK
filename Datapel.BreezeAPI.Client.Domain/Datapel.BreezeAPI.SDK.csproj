@@ -85,6 +85,7 @@
     <Compile Include="Service\AddressListService.cs" />
     <Compile Include="Service\ContactListService.cs" />
     <Compile Include="Service\ContactService.cs" />
+    <Compile Include="Service\DBSchemaService.cs" />
     <Compile Include="Service\InventoryListService.cs" />
     <Compile Include="Service\InventoryService.cs" />
     <Compile Include="Service\ItemService.cs" />
