@@ -2,6 +2,7 @@
 using System.Collections.Specialized;
 using System.IO;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Web;
 using System.Configuration;
@@ -97,7 +98,16 @@ namespace Datapel.BreezeAPI.SDK.Client
         {            
 
             string url = (BreezeAPIPath.EndsWith("/") ? BreezeAPIPath : (BreezeAPIPath += "/")) + ReturnTypeString + "/"; // hard code to json to get the Auth_token.            
-            url += path; 
+            url += path;
+
+            // Make sure any SSL (self signing certificate) is accepted
+            System.Net.ServicePointManager.ServerCertificateValidationCallback +=
+            delegate(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certificate,
+                                    System.Security.Cryptography.X509Certificates.X509Chain chain,
+                                    System.Net.Security.SslPolicyErrors sslPolicyErrors)
+            {
+                return true; // **** Always accept
+            };
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.ContentType = GetRequestContentType();                    

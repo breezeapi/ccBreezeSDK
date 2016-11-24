@@ -124,7 +124,15 @@ namespace Datapel.BreezeAPI.SDK.Client
         {
             string url = (BreezeAPIPath.EndsWith("/") ? BreezeAPIPath : (BreezeAPIPath += "/")) + "/json/"  ; // hard code to json to get the Auth_token.
             string endPoint = ConfigurationManager.AppSettings["BreezeAPI.TokenEndPoint"];
-            url += endPoint; 
+            url += endPoint;
+            // Make sure any SSL (self signing certificate) is accepted
+            System.Net.ServicePointManager.ServerCertificateValidationCallback +=
+            delegate(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certificate,
+                                    System.Security.Cryptography.X509Certificates.X509Chain chain,
+                                    System.Net.Security.SslPolicyErrors sslPolicyErrors)
+            {
+                return true; // **** Always accept
+            }; 
             HttpWebRequest authRequest = (HttpWebRequest)WebRequest.Create(url);
             authRequest.Headers.Add(Authorisation, encodeAuthorisation);                 
             authRequest.Method = "GET";
@@ -188,6 +196,14 @@ namespace Datapel.BreezeAPI.SDK.Client
             string url = (BreezeAPIPath.EndsWith("/") ? BreezeAPIPath : (BreezeAPIPath += "/")) + "/json/"; // hard code to json to get the Auth_token.
             string endPoint = ConfigurationManager.AppSettings["BreezeAPI.TimestampEndPoint"];
             url += endPoint;
+            // Make sure any SSL (self signing certificate) is accepted
+            System.Net.ServicePointManager.ServerCertificateValidationCallback +=
+            delegate(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certificate,
+                                    System.Security.Cryptography.X509Certificates.X509Chain chain,
+                                    System.Net.Security.SslPolicyErrors sslPolicyErrors)
+            {
+                return true; // **** Always accept
+            };
             HttpWebRequest authRequest = (HttpWebRequest)WebRequest.Create(url);
             authRequest.Headers.Add(Authorisation, state.AuthorisationCode);
             authRequest.Headers.Add(AuthToken, state.Auth_Token);
